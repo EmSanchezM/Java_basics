@@ -22,6 +22,31 @@ public class Ordenamiento {
         return this.arrayOrdenar;
     }
 
+    protected int[] ordering_shell(int[] list_order){
+        int intervalo, i, j, k, temp;
+        int n = list_order.length;
+        intervalo = n/2;
+        while(intervalo>0){
+            for(i=intervalo; i<n; i++){
+                j = i - intervalo;
+                while(j>=0){
+                    k = j + intervalo;
+                    if(list_order[j]<=list_order[k]){
+                        j = -1;
+                    }else{
+                        //Intercambio
+                        temp = list_order[j];
+                        list_order[j] = list_order[j+1];
+                        list_order[j+1] = temp;
+                        j -= intervalo;
+                    }
+                }
+            }
+            intervalo = intervalo / 2;
+        }
+        return list_order;
+    }
+
     protected boolean esMultiplo(int num){
         if(num%10 == 0){
             return true;
